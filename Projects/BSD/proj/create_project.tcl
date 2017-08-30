@@ -65,10 +65,10 @@ update_ip_catalog
 
 # Create 'synth_1' run (if not found)
 if {[string equal [get_runs -quiet synth_1] ""]} {
-  create_run -name synth_1 -board_part "digilentinc.com:arty:part0:1.1" -flow {Vivado Synthesis 2015} -strategy "Flow_PerfOptimized_High" -constrset constrs_1
+  create_run -name synth_1 -board_part "digilentinc.com:arty:part0:1.1" -flow {Vivado Synthesis 2016} -strategy "Flow_PerfOptimized_High" -constrset constrs_1
 } else {
   set_property strategy "Flow_PerfOptimized_High" [get_runs synth_1]
-  set_property flow "Vivado Synthesis 2015" [get_runs synth_1]
+  set_property flow "Vivado Synthesis 2016" [get_runs synth_1]
 }
 set obj [get_runs synth_1]
 set_property "part" "xc7a35ticsg324-1L" $obj
@@ -84,10 +84,10 @@ current_run -synthesis [get_runs synth_1]
 
 # Create 'impl_1' run (if not found)
 if {[string equal [get_runs -quiet impl_1] ""]} {
-  create_run -name impl_1 -board_part "digilentinc.com:arty:part0:1.1" -flow {Vivado Implementation 2015} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
+  create_run -name impl_1 -board_part "digilentinc.com:arty:part0:1.1" -flow {Vivado Implementation 2016} -strategy "Vivado Implementation Defaults" -constrset constrs_1 -parent_run synth_1
 } else {
   set_property strategy "Vivado Implementation Defaults" [get_runs impl_1]
-  set_property flow "Vivado Implementation 2015" [get_runs impl_1]
+  set_property flow "Vivado Implementation 2016" [get_runs impl_1]
 }
 set obj [get_runs impl_1]
 set_property "part" "xc7a35ticsg324-1L" $obj
@@ -111,7 +111,7 @@ set_property "top" "${design_name}_wrapper" $obj
 
 puts "INFO: Block design created: $design_name.bd"
 
-set scripts_vivado_version 2015.3
+set scripts_vivado_version 2016.4
 set current_vivado_version [version -short]
 
 if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
